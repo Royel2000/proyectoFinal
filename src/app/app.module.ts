@@ -20,8 +20,8 @@ import { LoginComponent } from './pages/login/login.component';
     NavbarComponent,
     AlumnoComponent,
     ActualizarComponent,
-    PerfilComponent
-    LoginComponent,
+    PerfilComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
