@@ -21,10 +21,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-    if ( localStorage.getItem('email') ) {
-      this.usuario.email = localStorage.getItem('email');
-      this.recordarme = true;
-    }
+    // if ( localStorage.getItem('email') ) {
+    //   this.usuario.email = localStorage.getItem('email');
+    //   this.recordarme = true;
+    // }
 
   }
 
