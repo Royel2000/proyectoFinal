@@ -3,11 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AlumnoComponent } from './components/alumno/alumno.component';
+
 import { ActualizarComponent } from './components/actualizar/actualizar.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { LoginComponent } from './pages/login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -17,6 +21,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     AlumnoComponent,
     ActualizarComponent,
     PerfilComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
