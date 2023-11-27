@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AlumnoComponent } from './components/alumno/alumno.component';
 import { ActualizarComponent } from './components/actualizar/actualizar.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ActualizarComponent } from './components/actualizar/actualizar.componen
     HomeComponent,
     NavbarComponent,
     AlumnoComponent,
-    ActualizarComponent
+    ActualizarComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
