@@ -1,82 +1,47 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/assets/logo-vt.svg" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Página de Inicio de Sesión Bootstrap</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body class="bg-dark d-flex justify-content-center align-items-center vh-100">
-    <div
-      class="bg-white p-5 rounded-5 text-secondary shadow"
-      style="width: 25rem"
-    >
-      <div class="d-flex justify-content-center">
-        <img
-          src="/assets/login-icon.svg"
-          alt="login-icon"
-          style="height: 7rem"
-        />
-      </div>
-      <div class="text-center fs-1 fw-bold">Inicio de Sesión</div>
-      <div class="input-group mt-4">
-        <div class="input-group-text bg-dark">
-          <img
-            src="/assets/username-icon.svg"
-            alt="username-icon"
-            style="height: 1rem"
-          />
+<div class="limiter animated fadeInLeft " >
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="bg-white p-5 rounded-5 text-secondary shadow" style="width: 25rem">
+            <div class="d-flex justify-content-center">
+                <img src="/assets/login-icon.svg" alt="login-icon" style="height: 7rem" />
+            </div>
+            <form (ngSubmit)="login(f)" #f="ngForm" class="login100-form validate-form flex-sb flex-w">
+                <span class="login100-form-title p-b-51"> Inicio de Sesión </span>
+
+                <span *ngIf="f.submitted && f.controls['email'].errors" class="text-danger animated fadeIn">El correo es
+                    obligatorio</span>
+
+                <div class="input-group mt-4">
+                    <div class="input-group-text bg-dark">
+                        <img src="/assets/username-icon.svg" alt="username-icon" style="height: 1rem" />
+                    </div>
+                    <input class="form-control bg-light" type="text" name="email" [(ngModel)]="usuario.email" required
+                        email placeholder="Email" />
+                </div>
+
+                <span *ngIf="f.submitted && f.controls['password'].errors" class="text-danger animated fadeIn">Al menos
+                    6 letras</span>
+                <div class="input-group mt-1">
+                    <div class="input-group-text bg-dark">
+                        <img src="/assets/password-icon.svg" alt="password-icon" style="height: 1rem" />
+                    </div>
+                    <input class="form-control bg-light" type="password" name="password" [(ngModel)]="usuario.password"
+                        required minlength="6" placeholder="Password" />
+                </div>
+
+                <div class="flex-sb-m w-full p-t-3 p-b-24">
+                    <div class="d-flex align-items-center gap-1">
+                        <div class="d-flex align-items-center gap-1">
+                            <input class="form-check-input" [(ngModel)]="recordarme" type="checkbox" />
+                            <div class="pt-1" style="font-size: 0.9rem">Recuérdame</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn btn-dark text-white w-100 mt-4 fw-semibold shadow-sm">
+                    <button class="btn btn-dark text-white w-100 fw-semibold shadow-sm" type="submit">
+                        Ingresar
+                    </button>
+                </div>
+            </form>
         </div>
-        <input
-          class="form-control bg-light"
-          type="text"
-          placeholder="Nombre de Usuario"
-        />
-      </div>
-      <div class="input-group mt-1">
-        <div class="input-group-text bg-dark">
-          <img
-            src="/assets/password-icon.svg"
-            alt="password-icon"
-            style="height: 1rem"
-          />
-        </div>
-        <input
-          class="form-control bg-light"
-          type="password"
-          placeholder="Contraseña"
-        />
-      </div>
-      <div class="d-flex justify-content-around mt-1">
-        <div class="d-flex align-items-center gap-1">
-          <input class="form-check-input" type="checkbox" />
-          <div class="pt-1" style="font-size: 0.9rem">Recuérdame</div>
-        </div>
-        <div class="pt-1">
-          <a
-            href="#"
-            class="text-decoration-none text-dark fw-semibold fst-italic"
-            style="font-size: 0.9rem"
-            >¿Olvidaste tu contraseña?</a
-          >
-        </div>
-      </div>
-      <div class="btn btn-dark text-white w-100 mt-4 fw-semibold shadow-sm">
-        Iniciar Sesión
-      </div>
-      <div class="d-flex gap-1 justify-content-center mt-1">
-        <div>¿No tienes una cuenta?</div>
-        <a href="#" class="text-decoration-none text-dark fw-semibold"
-          >Registrarse</a
-        >
-      </div>
     </div>
-  </body>
-</html>
+</div>

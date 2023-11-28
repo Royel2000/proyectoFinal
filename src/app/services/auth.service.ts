@@ -4,7 +4,7 @@ import { UsuarioModel } from '../models/usuario.model';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty';
@@ -23,35 +23,39 @@ export class AuthService {
   login(usuario: UsuarioModel) {
     const authData = {
       ...usuario,
-      returnSecureToken: true
+      returnSecureToken: true,
     };
 
-    return this.http.post<AuthResponse>(
-      `${this.url}/verifyPassword?key=${this.apikey}`,
-      authData
-    ).pipe(
-      map((resp: AuthResponse) => {
-        this.guardarToken(resp.idToken);
-        return resp;
-      })
-    );
+    return this.http
+      .post<AuthResponse>(
+        `${this.url}/verifyPassword?key=${this.apikey}`,
+        authData
+      )
+      .pipe(
+        map((resp: AuthResponse) => {
+          this.guardarToken(resp.idToken);
+          return resp;
+        })
+      );
   }
 
   nuevoUsuario(usuario: UsuarioModel) {
     const authData = {
       ...usuario,
-      returnSecureToken: true
+      returnSecureToken: true,
     };
 
-    return this.http.post<AuthResponse>(
-      `${this.url}/signupNewUser?key=${this.apikey}`,
-      authData
-    ).pipe(
-      map((resp: AuthResponse) => {
-        this.guardarToken(resp.idToken);
-        return resp;
-      })
-    );
+    return this.http
+      .post<AuthResponse>(
+        `${this.url}/signupNewUser?key=${this.apikey}`,
+        authData
+      )
+      .pipe(
+        map((resp: AuthResponse) => {
+          this.guardarToken(resp.idToken);
+          return resp;
+        })
+      );
   }
 
   private guardarToken(idToken: string) {
@@ -76,10 +80,9 @@ export class AuthService {
   estaAutenticado(): boolean {
     return this.userToken !== null && this.userToken.length > 2;
   }
-}
 
+}
 
 interface AuthResponse {
   idToken: string;
-
 }

@@ -1,0 +1,99 @@
+<div class="container d-flex my-5">
+    <div class="col-4 mx-5 text-center rounded-3 shadow-lg animated fadeInLeft">
+      <img
+        class="d-block mx-auto my-4"
+        src="../../../assets/login-icon.svg"
+        alt=""
+        width="72"
+        height="57"
+      />
+      <h2>Crear nuevo alumno</h2>
+    </div>
+    <div class="animated fadeInRight">
+      <div class="col-8">
+        <form class="needs-validation" (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <div class="row g-3">
+            
+            <div class="col-12">
+              <label for="firstName" class="form-label">Nombre y Apellido</label>
+              <span *ngIf="f.submitted && f.controls['nombre'].errors"
+                          class="text-danger animated fadeIn">El nombre es obligatorio</span>
+              <input
+                type="text"
+                class="form-control"
+                name="nombre"
+                [(ngModel)]="usuario.nombre"
+                minlength="2"
+                required
+              />
+              <div class="invalid-feedback">Valid first name is required.</div>
+            </div>
+  
+            <div class="col-12">
+              <label for="email" class="form-label">Email</label>
+              <span *ngIf="f.submitted && f.controls['email'].errors"
+                          class="text-danger animated fadeIn">El correo es obligatorio</span>
+              <input
+                type="email"
+                class="form-control"
+                type="email"
+                name="email"
+                [(ngModel)]="usuario.email"
+                required
+                email
+                placeholder="Email"
+              />
+            </div>
+  
+            <div class="col-12">
+              <label for="address" class="form-label">Contraseña</label>
+              <span *ngIf="f.submitted && f.controls['password'].errors"
+                          class="text-danger animated fadeIn">Al menos 6 letras</span>
+              <input
+                class="form-control"
+                type="password"
+                name="password"
+                [(ngModel)]="usuario.password"
+                minlength="6"
+                required
+                placeholder="1234 Main St"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="grupo" class="form-label">Grupo</label>
+              <span *ngIf="f.submitted && f.controls['grupo'].errors"
+                          class="text-danger animated fadeIn">Error</span>
+              <input
+                class="form-control"
+                type="text"
+                name="grupo"
+                [(ngModel)]="usuario.grupo"
+                required
+                placeholder="A B C"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="carrera" class="form-label">Carrera</label>
+              <span *ngIf="f.submitted && f.controls['grupo'].errors"
+                          class="text-danger animated fadeIn">Error</span>
+              <input
+                class="form-control"
+                type="text"
+                name="carrera"
+                [(ngModel)]="usuario.carrera"
+                minlength="3"
+                required
+                placeholder="programacion"
+              />
+            </div>
+          </div>
+  
+          <hr class="my-4" />
+          <button class="w-100 btn btn-primary btn-lg" type="submit">
+            Guardar Ususario
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

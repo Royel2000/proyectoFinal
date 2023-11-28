@@ -1,31 +1,34 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HomeComponent } from './components/home/home.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { AlumnoComponent } from './components/alumno/alumno.component';
-
-import { ActualizarComponent } from './components/actualizar/actualizar.component';
-import { PerfilComponent } from './components/perfil/perfil.component';
+import { RegistroComponent } from './pages/registro/registro.component';
+import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
-
+import { PrincipalComponent } from './pages/principal/principal.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    RegistroComponent,
     HomeComponent,
+    LoginComponent,
+    PrincipalComponent,
     NavbarComponent,
-    AlumnoComponent,
-    ActualizarComponent,
-    PerfilComponent,
-    LoginComponent
+    AdminComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
