@@ -14,19 +14,29 @@ import Swal from 'sweetalert2';
 })
 export class RegistroComponent implements OnInit {
 
-  usuario: UsuarioModel = new UsuarioModel;
+  usuario: UsuarioModel = new UsuarioModel();
   recordarme = false;
 
-  constructor( private auth: AuthService,
-                private router: Router ) { }
+  // Nueva propiedad para manejar la imagen seleccionada
+  imagenSeleccionada: File | null = null;
+
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.usuario = new UsuarioModel();
   }
 
-  onSubmit( form: NgForm ) {
+  // Método para manejar la selección de la imagen
+  onImagenSeleccionada(event: any): void {
+    const archivo: File = event.target.files[0];
 
-    if ( form.invalid ) { return; }
+    if (archivo) {
+      this.imagenSeleccionada = archivo;
+    }
+  }
+
+  onSubmit(form: NgForm) {
+    if (form.invalid) { return; }
 
     Swal.fire({
       allowOutsideClick: false,
@@ -35,18 +45,22 @@ export class RegistroComponent implements OnInit {
     });
     Swal.showLoading();
 
-    this.auth.nuevoUsuario( this.usuario )
-      .subscribe( resp => {
+    // Asegúrate de que la propiedad imagen no sea undefined antes de asignarla
+    if (this.imagenSeleccionada) {
+      this.usuario.imagen = this.imagenSeleccionada;
+    }
 
+    // Asegúrate de pasar la imagen seleccionada al método nuevoUsuario
+    this.auth.nuevoUsuario(this.usuario, this.imagenSeleccionada)
+      .subscribe(resp => {
         console.log(resp);
         Swal.close();
 
-        if ( this.recordarme ) {
+        if (this.recordarme) {
           localStorage.setItem('email', this.usuario.email);
         }
 
         this.router.navigateByUrl('/home');
-
       }, (err) => {
         console.log(err.error.error.message);
         Swal.fire({
@@ -56,6 +70,4 @@ export class RegistroComponent implements OnInit {
         });
       });
   }
-
-
 }

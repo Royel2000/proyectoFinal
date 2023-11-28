@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AlumnoService } from './pages/admin/alumno.service';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +15,7 @@ import { PrincipalComponent } from './pages/principal/principal.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminComponent } from './pages/admin/admin.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import { AdminComponent } from './pages/admin/admin.component';
     LoginComponent,
     PrincipalComponent,
     NavbarComponent,
-    AdminComponent
+    AdminComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import { AdminComponent } from './pages/admin/admin.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AlumnoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

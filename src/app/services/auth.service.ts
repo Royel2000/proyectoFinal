@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
   private url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty';
-  private apikey = 'AIzaSyDNxBpaczqt-ZtvR_YW0Hf3crTwW7KCcMA ';
+  private apikey = 'AIzaSyDNxBpaczqt-ZtvR_YW0Hf3crTwW7KCcMA';
   userToken: string | null = null;
 
   constructor(private http: HttpClient) {
@@ -39,16 +39,25 @@ export class AuthService {
       );
   }
 
-  nuevoUsuario(usuario: UsuarioModel) {
-    const authData = {
-      ...usuario,
-      returnSecureToken: true,
-    };
+  nuevoUsuario(usuario: UsuarioModel, imagen: File | null) {
+    const formData = new FormData();
+
+    // Agregar propiedades del usuario
+    Object.keys(usuario).forEach(key => {
+      formData.append(key, (usuario as any)[key]);
+    });
+
+    // Agregar la imagen al FormData
+    if (imagen) {
+      formData.append('imagen', imagen, imagen.name);
+    }
+
+    formData.append('returnSecureToken', 'true');
 
     return this.http
       .post<AuthResponse>(
         `${this.url}/signupNewUser?key=${this.apikey}`,
-        authData
+        formData
       )
       .pipe(
         map((resp: AuthResponse) => {
@@ -80,7 +89,6 @@ export class AuthService {
   estaAutenticado(): boolean {
     return this.userToken !== null && this.userToken.length > 2;
   }
-
 }
 
 interface AuthResponse {

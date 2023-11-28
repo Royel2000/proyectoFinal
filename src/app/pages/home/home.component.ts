@@ -10,6 +10,7 @@ import { UsuarioModel } from 'src/app/models/usuario.model';
 })
 export class HomeComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) {}
+  alumnos: any[] = [];
 
   ngOnInit() {
   }

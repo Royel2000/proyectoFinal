@@ -12,23 +12,22 @@ export class NavbarComponent {
   usuario: UsuarioModel = new UsuarioModel();
 
   constructor(private auth: AuthService, private router: Router) {}
+
   ngOnInit() {
-    if (localStorage.getItem('email')) {
-      this.usuario.email = localStorage.getItem('email');
+    const storedEmail = localStorage.getItem('email');
+    if (storedEmail !== null) {
+      this.usuario.email = storedEmail;
     }
   }
+
   salir() {
     this.auth.logout();
     this.router.navigateByUrl('/principal');
   }
 
   login() {
-    if(this.auth.estaAutenticado()){
-      return true;
-    }
-    else {
-      return false;
-    }
+    return this.auth.estaAutenticado();
   }
-
 }
+
+

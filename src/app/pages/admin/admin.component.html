@@ -1,32 +1,20 @@
-<header
-  class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow"
-  data-bs-theme="dark"
->
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#"
-    >Admin</a
-  >
+<!-- admin.component.html -->
+<header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Admin</a>
 </header>
 
 <div class="container-fluid">
   <main class="mx-5 my-5">
-    <div
-      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
-    >
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
       <h1 class="h2">Alumno</h1>
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
-          <a
-            type="button"
-            routerLink="/registro"
-            class="btn btn-sm btn-outline-success"
-          >
-            Nuevo alumno
-          </a>
+          <a type="button" routerLink="/registro" class="btn btn-sm btn-outline-success">Nuevo alumno</a>
         </div>
       </div>
     </div>
 
-    <h2>Section title</h2>
+    <h2>Lista de Alumnos</h2>
     <div class="table-responsive small animated fadeInRight">
       <table class="table table-striped table-sm">
         <thead>
@@ -43,23 +31,24 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>img</td>
-            <td>manuel</td>
-            <td>ayala</td>
-            <td>manuel@gmail.com</td>
-            <td>aprobado</td>
-            <td>A</td>
-            <td>programacion</td>
+          <tr *ngFor="let alumno of alumnos">
             <td>
-              <button type="button" class="btn btn-outline-primary">
-                Editar
-              </button>
+              <!-- Mostrar la imagen si existe -->
+              <img *ngIf="alumno.imagen" [src]="alumno.imagen" alt="Imagen del alumno" width="50" height="50">
+              <!-- Puedes ajustar la lógica según cómo manejas las imágenes -->
+              <!-- Por ejemplo, podrías tener una ruta completa a las imágenes en tu servidor -->
+            </td>
+            <td>{{ alumno.nombre }}</td>
+            <td>{{ alumno.apellido }}</td>
+            <td>{{ alumno.email }}</td>
+            <td>{{ alumno.aprobado }}</td>
+            <td>{{ alumno.grupo }}</td>
+            <td>{{ alumno.carrera }}</td>
+            <td>
+              <button type="button" class="btn btn-outline-primary">Editar</button>
             </td>
             <td>
-              <button type="button" class="btn btn-outline-danger">
-                Eliminar
-              </button>
+              <button type="button" class="btn btn-outline-danger">Eliminar</button>
             </td>
           </tr>
         </tbody>
