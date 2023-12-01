@@ -1,0 +1,45 @@
+<div class="displayTable">
+    <div class="displayTableCell">
+      <div class="authBlock">
+        <h3>Crear Usuario</h3>
+        <div class="formGroup">
+          <input
+            type="email"
+            class="form-control mb-2"
+            placeholder="Email Address"
+            #userEmail
+            required
+          />
+        </div>
+        <div class="formGroup">
+          <input
+            type="password"
+            class="form-control mb-2"
+            placeholder="Password"
+            #userPwd
+            required
+          />
+        </div>
+        <select class="form-select" #rol>
+          <option selected value="alumno">alumno</option>
+          <option value="admin">admin</option>
+        </select>
+        <div class="formGroup">
+          <input
+            type="button"
+            class="btn btn-primary"
+            value="Sign Up"
+            (click)="authService.SignUp(userEmail.value, userPwd.value, rol.value)"
+          />
+        </div>
+        <div class="formGroup">
+          <span class="or"><span class="orInner">Or</span></span>
+        </div>
+      <div class="redirectToLogin">
+        <span
+          >Already have an account?
+          <span class="redirect" routerLink="/sign-in">Log In</span></span
+        >
+      </div>
+    </div>
+  </div>
