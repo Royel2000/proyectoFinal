@@ -56,7 +56,7 @@ export class AuthService {
       });
   }
   // Sign up with email/password
-  SignUp(email: string, password: string, rol: string) {
+  SignUp(email: string, password: string, rol: string,imagen: string,nombre: string,apellido: string,aprobado: string,grupo: string, carrera: string,) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
@@ -65,6 +65,13 @@ export class AuthService {
         this.afs.collection('userscollections').add({
           uid: result.user?.uid,
           rol: rol,
+          imagen:imagen,
+          nombre:nombre,
+          apellido:apellido,
+          aprobado:aprobado,
+          grupo:grupo,
+          carrera:carrera,
+
         });
         this.SendVerificationMail();
         this.SetUserData(result.user);
@@ -139,23 +146,7 @@ export class AuthService {
   }
 
 
-  SetRolData(roles: any) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `roles/${roles.uid}`
-    );
-
-    const rolesData: Roles = {
-      uid: roles.uid,
-      rol: roles.rol,
-    };
-
-    this.UID=roles.uid;
-    console.log(userRef);
-    return userRef.set(rolesData, {
-      merge: true,
-    });
-    
-  }
+ 
 
   estaAutenticado(): Boolean {
     if (this.userToken == null) {

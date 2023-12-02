@@ -20,16 +20,83 @@
             required
           />
         </div>
+
+        <div class="formGroup">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="imagen"
+            #imagen
+            required
+          />
+        </div>
+
+        <div class="formGroup">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="nombre"
+            #nombre
+            required
+          />
+        </div>
+        <div class="formGroup">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="apellido"
+            #apellido
+            required
+          />
+        </div>
+
+        <div class="formGroup">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="aprobado"
+            #aprobado
+            required
+          />
+        </div>
+
+        <div class="formGroup">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="grupo"
+            #grupo
+            required
+          />
+        </div>
+        <div class="formGroup">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="carrera"
+            #carrera
+            required
+          />
+        </div>
+
+
+
         <select class="form-select" #rol>
           <option selected value="alumno">alumno</option>
           <option value="admin">admin</option>
         </select>
+             
+
+
+
         <div class="formGroup">
           <input
             type="button"
             class="btn btn-primary"
             value="Sign Up"
-            (click)="authService.SignUp(userEmail.value, userPwd.value, rol.value)"
+            (click)="authService.SignUp(userEmail.value, userPwd.value, rol.value, imagen.value, nombre.value ,apellido.value, aprobado.value, grupo.value, carrera.value)"
+
+            
           />
         </div>
         <div class="formGroup">
