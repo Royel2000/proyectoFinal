@@ -7,7 +7,7 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { Roles } from './roles';
+import { RolesService } from './roles.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,18 +23,23 @@ export class AuthService {
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
-    public ngZone: NgZone // NgZone service to remove outside scope warning
+    public ngZone: NgZone, // NgZone service to remove outside scope warning
+    public rolesuser : RolesService
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe((user) => {
       if (user) {
+        this.rolesuser.dataRolUsuario(user.uid);
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user')!);
+        JSON.parse(localStorage.getItem('roldata')!);
+       
       } else {
         localStorage.setItem('user', 'null');
         JSON.parse(localStorage.getItem('user')!);
+        JSON.parse(localStorage.getItem('roldata')!);
       }
     });
   }
@@ -60,9 +65,7 @@ export class AuthService {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        /* Call the SendVerificaitonMail() function when new user sign 
-        up and returns promise */
-        this.afs.collection('userscollections').add({
+        this.afs.collection('usersCollections').add({
           uid: result.user?.uid,
           rol: rol,
           imagen:imagen,
@@ -71,7 +74,6 @@ export class AuthService {
           aprobado:aprobado,
           grupo:grupo,
           carrera:carrera,
-
         });
         this.SendVerificationMail();
         this.SetUserData(result.user);
@@ -160,7 +162,9 @@ export class AuthService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
+      localStorage.removeItem('roldata');
       this.router.navigate(['sign-in']);
+
     });
   }
 }
