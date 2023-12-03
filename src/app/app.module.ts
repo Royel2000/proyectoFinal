@@ -18,6 +18,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
+import { PromedioCalificacionesComponent } from './promedio-calificaciones/promedio-calificaciones.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HomeComponent } from './components/home/home.component';
     ForgotPasswordComponent,
     VerifyEmailComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    PromedioCalificacionesComponent
   ],
   imports: [
     BrowserModule,
