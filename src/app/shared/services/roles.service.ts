@@ -32,6 +32,12 @@ export class RolesService {
     this.datos = this.db.collection('usersCollections', ref => ref.where('grupo','==', key )).valueChanges()
     return this.datos;
   }
+  getRol3(key: string){
+    this.datos = this.db.collection('usersCollections', ref => ref.where('grupo','==', key )).valueChanges()
+    return this.datos;
+  }
+
+
   getRolUsuario(key: string) {
     if (key) {
       this.rolesRef
