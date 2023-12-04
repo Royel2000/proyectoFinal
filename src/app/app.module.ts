@@ -21,6 +21,7 @@ import { CargaComponent } from './components/carga/carga.component';
 import { UploadFormComponent } from './components/upload-form/upload-form.component';
 import { UploadListComponent } from './components/upload-list/upload-list.component';
 import { UploadDetailsComponent } from './components/upload-details/upload-details.component';
+import { SalonComponent } from './components/salon/salon.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { UploadDetailsComponent } from './components/upload-details/upload-detai
     UploadFormComponent,
     UploadListComponent,
     UploadDetailsComponent,
+    SalonComponent,
   ],
   imports: [
     BrowserModule,
