@@ -1,4 +1,5 @@
 export class Rol {
+  key?: string;
   uid?: string | null;
   roles?: string;
   imagen?: string;

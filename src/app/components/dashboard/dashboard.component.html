@@ -1,29 +1,57 @@
-
 <!-- Sidebar navigation -->
 <div class="container-fluid">
   <div class="row">
-    <!-- Main content -->
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div class="col-md-9 ml-sm-auto col-lg-4 px-4">
       <div class="inner-adjust">
-        <div class="pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">User Profile</h1>
+        <div
+          class="d-flex align-items-center justify-content-center my-4"
+          *ngIf="roles_del_usuario as rol"
+        >
+          <img
+            src="{{ rol.imagen }}"
+            alt="{{ rol.nombre }}"
+            width="200"
+            height="200"
+            class="rounded-circle"
+          />
+          <h1 class="mx-5">
+            <strong>{{ rol.nombre }}</strong>
+          </h1>
         </div>
-        <!-- Show user data when logged in -->
-        <div class="row" *ngIf="authService.userData as user">
-          <div class="col-md-12">
-            <div class="media">
-              <img class="align-self-start mr-5 img-fluid"
-                src="{{(rolesUsuario.imagen) ? '../../assets/'+rolesUsuario.imagen : '../../assets/logoNoe.png'}}" alt="{{rolesUsuario.nombre}}">
-              <div class="media-body">
-                <h1>Hello: <strong>{{(rolesUsuario.nombre) ? rolesUsuario.nombre : 'User'}}</strong></h1>
-                <p>User ID: <strong>{{user.uid}}</strong></p>
-                <p>Email: <strong>{{user.email}}</strong></p>
-                <p>Rol: <strong>{{rolesUsuario.rol}}</strong></p>
-              </div>
-            </div>
+        <div>
+          <li><a routerLink="/upload" class="btn btn-primary">Cambiar foto de perfil</a></li>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 ml-sm-auto col-lg-8 px-4">
+      <div
+        class="d-flex align-items-center "
+        *ngIf="authService.userData as user"
+      >
+        <div class="media">
+          <div class="media-body">
+            <p>
+              User ID: <strong>{{ user.uid }}</strong>
+            </p>
+            <p>
+              Email: <strong>{{ user.email }}</strong>
+            </p>
           </div>
         </div>
       </div>
-    </main>
+      <div
+        class="d-flex align-items-center"
+        *ngIf="roles_del_usuario as rol"
+      >
+        <div class="media-body">
+          <p>
+            Nombre Usuario: <strong>{{ rol.nombre }}</strong>
+          </p>
+          <p>
+            Grupo: <strong>{{ rol.grupo }}</strong>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

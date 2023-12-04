@@ -1,24 +1,24 @@
 <!-- home.component.html -->
 <div class="container">
-  <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary animated fadeInLeft">
+  <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis text-decoration-none bg-body-secondary animated fadeInLeft">
     <div class="col-lg-6 px-0">
       <h1 class="display-4 fst-italic">Programa de gestión de alumnos</h1>
-      <p class="lead my-3">Hola mundo</p>
-      <p class="lead mb-0"><a routerLink="/sign-in" class="text-body-emphasis fw-bold">login</a></p>
+      <p class="lead my-3">Inicia session aqui</p>
+      <p class="lead mb-0 btn btn-success"><a routerLink="/sign-in" class="text-body-emphasis fw-bold">Login</a></p>
     </div>
   </div>
   
   <div class="row g-5">
     <div class="col-md-8 animated fadeInUp">
       <h3 class="pb-4 mb-4 fst-italic border-bottom">
-        From the Firehose
+        From the Firestore 
+        
       </h3>
       <article class="blog-post">
         <table  class="table table-dark table-sm">
           <!-- Contenido de la tabla -->
           <thead>
             <tr>
-              <th>Imagen</th>
               <th>Nombre</th>
               <th>Apellido</th>
               <th>Aprobado</th>
@@ -27,13 +27,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>img</td>
-              <td>manuel</td>
-              <td>ayala</td>
-              <td>aprobado</td>
-              <td>A</td>
-              <td>programacion</td>
+            <tr  *ngFor="let al of usuarios_del_grupo;" >
+              <td>{{ al.nombre }}l</td>
+              <td>{{ al.apellido }}</td>
+              <td>{{ al.aprobado }}</td>
+              <td>{{ al.grupo }}</td>
+              <td>{{ al.carrera }}</td>
             </tr>
           </tbody>
           <tfoot>
@@ -43,7 +42,7 @@
               <td></td>
               <td></td>
               <td></td>
-              <td>1</td>
+              <td></td>
             </tr>
           </tfoot>
         </table>
@@ -63,28 +62,10 @@
             <!-- Contenido del cuadro de honor -->
             <li>
               <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-                <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+                <img class="bd-placeholder-img" width="100%" height="70" src="../../../assets/logoNoeTransparente.png">
                 <div class="col-lg-8">
                   <h6 class="mb-0">Example blog post title</h6>
                   <small class="text-body-secondary">January 15, 2023</small>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-                <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
-                <div class="col-lg-8">
-                  <h6 class="mb-0">This is another blog post title</h6>
-                  <small class="text-body-secondary">January 14, 2023</small>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-                <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
-                <div class="col-lg-8">
-                  <h6 class="mb-0">Longer blog post title: This one has multiple lines!</h6>
-                  <small class="text-body-secondary">January 13, 2023</small>
                 </div>
               </a>
             </li>
@@ -92,6 +73,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
 

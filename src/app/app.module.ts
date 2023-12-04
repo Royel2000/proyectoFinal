@@ -8,7 +8,6 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddTutorialComponent } from './components/add-tutorial/add-tutorial.component';
 import { TutorialDetailsComponent } from './components/tutorial-details/tutorial-details.component';
 import { TutorialsListComponent } from './components/tutorials-list/tutorials-list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -18,12 +17,14 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
-import { PromedioCalificacionesComponent } from './promedio-calificaciones/promedio-calificaciones.component';
+import { CargaComponent } from './components/carga/carga.component';
+import { UploadFormComponent } from './components/upload-form/upload-form.component';
+import { UploadListComponent } from './components/upload-list/upload-list.component';
+import { UploadDetailsComponent } from './components/upload-details/upload-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddTutorialComponent,
     TutorialDetailsComponent,
     TutorialsListComponent,
     DashboardComponent,
@@ -33,7 +34,10 @@ import { PromedioCalificacionesComponent } from './promedio-calificaciones/prome
     VerifyEmailComponent,
     NavbarComponent,
     HomeComponent,
-    PromedioCalificacionesComponent
+    CargaComponent,
+    UploadFormComponent,
+    UploadListComponent,
+    UploadDetailsComponent,
   ],
   imports: [
     BrowserModule,

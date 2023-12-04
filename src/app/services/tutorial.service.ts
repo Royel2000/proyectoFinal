@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
-import { Tutorial } from '../models/tutorial.model';
+import { Rol  } from '../models/rol.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TutorialService {
-  private dbPath = '/tutorials';
+  private dbPath = '/usersCollections';
 
-  tutorialsRef: AngularFireList<Tutorial>;
+  tutorialsRef: AngularFireList<Rol>;
 
   constructor(private db: AngularFireDatabase) {
     this.tutorialsRef = db.list(this.dbPath);
   }
 
-  getAll(): AngularFireList<Tutorial> {
+  getAll(): AngularFireList<Rol> {
     return this.tutorialsRef;
   }
 
-  create(tutorial: Tutorial): any {
+  create(tutorial: Rol): any {
     return this.tutorialsRef.push(tutorial);
   }
 

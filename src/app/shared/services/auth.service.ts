@@ -2,12 +2,15 @@ import { Injectable, NgZone } from '@angular/core';
 import { User } from '../services/user';
 import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { map } from 'rxjs/operators';
+
 import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { RolesService } from './roles.service';
+import { Rol } from './roles';
 
 @Injectable({
   providedIn: 'root',
@@ -15,29 +18,27 @@ import { RolesService } from './roles.service';
 export class AuthService {
   userData: any; // Save logged in user data
   rolesData: any;
-  userToken!: string;
-
-  UID?: string;
-
+  rr: any;
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
     public ngZone: NgZone, // NgZone service to remove outside scope warning
-    public rolesuser : RolesService
+    public rolesuser: RolesService,
+
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe((user) => {
       if (user) {
-        this.rolesuser.dataRolUsuario(user.uid);
         this.userData = user;
+        this.Rolesquery(user.uid);
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user')!);
         JSON.parse(localStorage.getItem('roldata')!);
-       
       } else {
         localStorage.setItem('user', 'null');
+        localStorage.setItem('roldata', 'null');
         JSON.parse(localStorage.getItem('user')!);
         JSON.parse(localStorage.getItem('roldata')!);
       }
@@ -49,9 +50,14 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.SetUserData(result.user);
-        this.userToken = email;
+
+        this.rolesuser.dataRolUsuario(result.user!.uid);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
+            // console.log(user.uid);
+            //console.log(this.rolesuser.getRol(user.uid));
+            this.Rolesquery(user.uid);
+            //this.SetRolesData(this.rolesuser.getRol(user.uid) );
             this.router.navigate(['dashboard']);
           }
         });
@@ -60,20 +66,51 @@ export class AuthService {
         window.alert(error.message);
       });
   }
+  Rolesquery(key: string) {
+    this.rolesuser.getAll().snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({
+            key: c.payload.doc.id,
+            ...c.payload.doc.data(),
+          }))
+        )
+      )
+      .subscribe((data) => {
+        var busqueda: any;
+        data.forEach(function (value) {
+          if (value.uid == key) {
+            busqueda = value;
+          }
+        });
+        this.SetRolesData(busqueda);
+
+      });
+  }
   // Sign up with email/password
-  SignUp(email: string, password: string, rol: string,imagen: string,nombre: string,apellido: string,aprobado: string,grupo: string, carrera: string,) {
+  SignUp(
+    email: string,
+    password: string,
+    rol: string,
+    imagen: string,
+    nombre: string,
+    apellido: string,
+    aprobado: string,
+    grupo: string,
+    carrera: string
+  ) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.afs.collection('usersCollections').add({
           uid: result.user?.uid,
           rol: rol,
-          imagen:imagen,
-          nombre:nombre,
-          apellido:apellido,
-          aprobado:aprobado,
-          grupo:grupo,
-          carrera:carrera,
+          imagen: imagen,
+          nombre: nombre,
+          apellido: apellido,
+          aprobado: aprobado,
+          grupo: grupo,
+          carrera: carrera,
         });
         this.SendVerificationMail();
         this.SetUserData(result.user);
@@ -101,11 +138,13 @@ export class AuthService {
         window.alert(error);
       });
   }
+
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
     return user !== null ? true : false;
   }
+
   // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
@@ -118,6 +157,7 @@ export class AuthService {
       .signInWithPopup(provider)
       .then((result) => {
         this.router.navigate(['dashboard']);
+        // this.SetRolesData(this.rolesuser.getRol(result.user!.uid) );
         this.SetUserData(result.user);
       })
       .catch((error) => {
@@ -140,31 +180,37 @@ export class AuthService {
       emailVerified: user.emailVerified,
     };
 
-    this.UID=user.uid;
-
     return userRef.set(userData, {
       merge: true,
     });
   }
+  SetRolesData(roles: any) {
 
+    const rolesRef: AngularFirestoreDocument<any> = this.afs.doc(
+      `userCollections/${roles.uid}`
+    );
 
- 
+    const rolesData: Rol = {
+      uid: roles.key,
+      nombre: roles.nombre,
+      aprobado: roles.aprobado,
+      imagen: roles.imagen,
+      grupo: roles.grupo,
+      rol: roles.rol,
+      apellido: roles.apellido,
+      carrera: roles.carrera,
+    };
 
-  estaAutenticado(): Boolean {
-    if (this.userToken == null) {
-      return false;
-    } else {
-      return true;
-    }
+    return rolesRef.set(rolesData, {
+      merge: true,
+    });
   }
-
   // Sign out
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       localStorage.removeItem('roldata');
       this.router.navigate(['sign-in']);
-
     });
   }
 }
