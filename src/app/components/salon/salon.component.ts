@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-salon',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./salon.component.css']
 })
 export class SalonComponent {
-
+  usuarios_del_grupo:any;
 }
