@@ -58,7 +58,7 @@ export class AuthService {
             //console.log(this.rolesuser.getRol(user.uid));
             this.Rolesquery(user.uid);
             //this.SetRolesData(this.rolesuser.getRol(user.uid) );
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['carga']);
           }
         });
       })
@@ -95,6 +95,7 @@ export class AuthService {
     imagen: string,
     nombre: string,
     apellido: string,
+    sexo:string,
     aprobado: string,
     grupo: string,
     carrera: string
@@ -108,6 +109,7 @@ export class AuthService {
           imagen: imagen,
           nombre: nombre,
           apellido: apellido,
+          sexo: sexo,
           aprobado: aprobado,
           grupo: grupo,
           carrera: carrera,
@@ -198,6 +200,7 @@ export class AuthService {
       grupo: roles.grupo,
       rol: roles.rol,
       apellido: roles.apellido,
+      sexo: roles.sexo,
       carrera: roles.carrera,
     };
 

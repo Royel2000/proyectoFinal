@@ -1,91 +1,93 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/compat/firestore';
+import { Rol } from '../services/roles';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RolesService {
   private dbPath = '/usersCollections';
-  public datos: any;
-  rolesRef: AngularFirestoreCollection<any>;
-
+  public datos:any;
+  rolesRef: AngularFirestoreCollection<Rol>;
+  datarol!:  AngularFirestoreCollection<Rol>;
   constructor(private db: AngularFirestore) {
     this.rolesRef = db.collection(this.dbPath);
   }
 
-  getAll(): AngularFirestoreCollection<any> {
+  getAll(): AngularFirestoreCollection<Rol> {
     return this.rolesRef;
   }
 
-  create(rol: any): any {
+  create(rol: Rol): any {
     return this.rolesRef.add(rol);
   }
-
-  // Este método devuelve un Observable que emite los datos del grupo
-  getDatosDelGrupo(key: string): Observable<any[]> {
-    return this.db.collection('usersCollections', ref => ref.where('grupo', '==', key))
-      .snapshotChanges()
-      .pipe(
-        map(changes =>
-          changes.map(c => {
-            const data = c.payload.doc.data() as any;  // Utilizamos 'as any' para evitar errores de tipo
-            const key = c.payload.doc.id;
-            return { key, ...data };
-          })
-        )
-      );
+  getRol(){
+    this.datos = this.db.collection('usersCollections').valueChanges();
+    return this.datos;
   }
-
-  getRolUsuario(key: string): void {
+  getRol2(key: string){
+    this.datos = this.db.collection('usersCollections', ref => ref.where('grupo','==', key )).valueChanges();
+    return this.datos;
+  }
+  Busqueda(tipo: any,busqueda: string ){
+    this.datos = this.db.collection('usersCollections', ref => ref.where(tipo,'==', busqueda )).valueChanges();
+    return this.datos;
+  }
+  getRolUsuario(key: string) {
     if (key) {
-      this.rolesRef.snapshotChanges()
+      this.rolesRef
+        .snapshotChanges()
         .pipe(
-          map(changes =>
-            changes.map(c => ({
+          map((changes) =>
+            changes.map((c) => ({
               key: c.payload.doc.id,
-              ...c.payload.doc.data()
+              ...c.payload.doc.data(),
             }))
           )
         )
-        .subscribe(data => {
-          let busqueda = 'user'; // Valor predeterminado
-          data.forEach(value => {
+        .subscribe((data) => {
+          var busqueda: string = '';
+          data.forEach(function (value) {
             if (value.uid == key) {
-              busqueda = value.rol || 'user';
+              busqueda = value.rol ? value.rol : 'user';
             }
           });
           localStorage.setItem('rol', JSON.stringify(busqueda));
         });
     }
   }
-
-  dataRolUsuario(key: string): void {
+  dataRolUsuario(key: string) {
     if (key) {
-      let busqueda2: any = '';
-      this.rolesRef.snapshotChanges()
+      var busqueda2: any = '';
+      this.rolesRef
+        .snapshotChanges()
         .pipe(
-          map(changes =>
-            changes.map(c => ({
+          map((changes) =>
+            changes.map((c) => ({
               key: c.payload.doc.id,
-              ...c.payload.doc.data()
+              ...c.payload.doc.data(),
             }))
           )
         )
-        .subscribe(data => {
-          data.forEach(value => {
+        .subscribe((data) => {
+          data.forEach(function (value) {
             if (value.uid == key) {
-              busqueda2 = value || '';
+              busqueda2 = value ? value : '';
             }
+           // console.log(busqueda2);
             localStorage.setItem('roldata', JSON.stringify(busqueda2));
           });
         });
-    } else {
-      localStorage.setItem('roldata', '');
+      
+      //console.log('roldata', localStorage.getItem('roldata'));
+    }else{
+      localStorage.setItem('roldata',"");
     }
   }
-
   update(key: string, value: any): Promise<void> {
     return this.rolesRef.doc(key).update(value);
   }

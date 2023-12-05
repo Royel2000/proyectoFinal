@@ -5,148 +5,152 @@
       <br />
       <p class="text-white">datos</p>
       <br />
-      <div class="formGroup">
-        <input
-          type="email"
-          class="form-control mb-2"
-          placeholder="Email Address"
-          #userEmail
-          required
-        />
-      </div>
-      <div class="formGroup">
-        <input
-          type="password"
-          class="form-control mb-2"
-          placeholder="Password"
-          #userPwd
-          required
-        />
-      </div>
+      <div class="animate__animated animate__fadeInLeft">
+        <div class="formGroup">
+          <input
+            type="email"
+            class="form-control mb-2"
+            placeholder="Email Address"
+            #userEmail
+            required
+          />
+        </div>
+        <div class="formGroup">
+          <input
+            type="password"
+            class="form-control mb-2"
+            placeholder="Password"
+            #userPwd
+            required
+          />
+        </div>
 
-      <div class="formGroup">
-        <input
-          type="text"
-          class="form-control mb-2"
-          placeholder="imagen"
-          #imagen
-          required
-          disabled
-          [value]="this.selectedFiles?.item(0)?.name"
-        />
-      </div>
+        <div class="formGroup">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="imagen"
+            #imagen
+            required
+            disabled
+            [value]="this.selectedFiles?.item(0)?.name"
+          />
+        </div>
 
-      <div class="formGroup">
-        <input
-          type="text"
-          class="form-control mb-2"
-          placeholder="nombre"
-          #nombre
-          required
-        />
-      </div>
-      <div class="formGroup">
-        <input
-          type="text"
-          class="form-control mb-2"
-          placeholder="apellido"
-          #apellido
-          required
-        />
-      </div>
-
-      <select class="form-select mb-2" #grupo required>
-        <option selected value="A">A</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
-        <option value="D">D</option>
-      </select>
-
-      <div class="formGroup">
-        <input
-          type="text"
-          class="form-control mb-2"
-          placeholder="carrera"
-          #carrera
-          required
-        />
+        <div class="formGroup">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="nombre"
+            #nombre
+            required
+          />
+        </div>
+        <div class="formGroup">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="apellido"
+            #apellido
+            required
+          />
+        </div>
+        <select class="form-select mb-2" #sexo required>
+          <option selected value="M">Masculino</option>
+          <option value="F">Femenino</option>
+        </select>
+        <select class="form-select mb-2" #grupo required>
+          <option selected value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+        </select>
+        <select class="form-select mb-2" #carrera required>
+          <option selected value="Contabilidad">Contabilidad</option>
+          <option value="Programacion">Programacion</option>
+          <option value="A.R.H">A.R.H</option>
+          <option value="Electricidad">Electricidad</option>
+          <option value="Ciencia de datos">Ciencia de datos</option>
+        </select>
       </div>
 
       <hr />
       <p class="text-white">calificacion</p>
-      <p> 0 a 100</p>
+      <p>0 a 100</p>
       <br />
-
-      <div class="text-center">
-        <div class="row align-items-start">
-          <div class="col">
-            <div class="form-group mb-2">
-              <input
-                type="number"
-                class="form-control"
-                id="calificacion1"
-                required
-                [(ngModel)]="calificacion1"
-                name="calificacion1"
-                placeholder="calificacion 1"
-              />
+      <div class="animate__animated animate__fadeInLeft animate__delay-1s">
+        <div class="text-center">
+          <div class="row align-items-start">
+            <div class="col">
+              <div class="form-group mb-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="calificacion1"
+                  required
+                  [(ngModel)]="calificacion1"
+                  name="calificacion1"
+                  placeholder="calificacion 1"
+                />
+              </div>
             </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-2">
-              <input
-                type="number"
-                class="form-control"
-                id="calificacion2"
-                required
-                [(ngModel)]="calificacion2"
-                name="calificacion2"
-                placeholder="calificacion 2"
-              />
+            <div class="col">
+              <div class="form-group mb-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="calificacion2"
+                  required
+                  [(ngModel)]="calificacion2"
+                  name="calificacion2"
+                  placeholder="calificacion 2"
+                />
+              </div>
             </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-2">
-              <input
-                type="number"
-                class="form-control"
-                id="calificacion3"
-                required
-                [(ngModel)]="calificacion3"
-                name="calificacion3"
-                placeholder="calificacion 3"
-              />
+            <div class="col">
+              <div class="form-group mb-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="calificacion3"
+                  required
+                  [(ngModel)]="calificacion3"
+                  name="calificacion3"
+                  placeholder="calificacion 3"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <p>promedio : {{promedio}}</p>
-      <div class="formGroup">
-        <input
-          type="text"
-          class="form-control mb-2"
-          placeholder="aprobado"
-          #aprobado
-          [value]="promedio"
-          disabled
-          required
-        />
-      </div>
-      <!-- promedio | number : '1.2-2' -->
+        <p>promedio : {{ promedio }}</p>
+        <div class="formGroup">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="aprobado"
+            #aprobado
+            [value]="aprobo(promedio)"
+            disabled
+            required
+          />
+        </div>
+        <!-- promedio | number : '1.2-2' -->
 
-      <button (click)="calcularPromedio()" class="btn btn-warning mb-2">
-        Calcular Promedio
-      </button>
+        <button (click)="calcularPromedio()" class="btn btn-warning mb-2">
+          Calcular Promedio
+        </button>
+      </div>
 
       <hr />
       <p class="text-white">Rol</p>
       <br />
 
-      <select class="form-select mb-2" #rol>
-        <option selected>seleccionar Rol</option>
-        <option value="alumno">alumno</option>
-        <option value="admin">admin</option>
-      </select>
+      <div class="animate__animated animate__fadeInLeft animate__delay-2s">
+        <select class="form-select mb-2" #rol>
+          <option value="alumno" selected>alumno</option>
+          <option value="admin">admin</option>
+        </select>
+      </div>
 
       <div class="formGroup">
         <input
@@ -161,6 +165,7 @@
               imagen.value,
               nombre.value,
               apellido.value,
+              sexo.value,
               aprobado.value,
               grupo.value,
               carrera.value
@@ -171,8 +176,41 @@
     </div>
   </div>
   <div class="col-md-8">
-    <div class="position-stiky">
-      
+    <div class="position-stiky animate__animated animate__fadeInRight animate__delay-1s">
+      <app-tutorials-list></app-tutorials-list>
+      <div class="animate__animated animate__fadeInRight animate__delay-2s container mt-5">
+        <div class="row mb-3 bg-dark-subtle p-3 rounded">
+          <div class="col"><input type="radio" name="flexRadioDefault" id="flexRadioDefault" class="form-check-input mx-2" (click)="ngOnInit()">Default</div>
+          <div class="col"><input type="radio" name="flexRadioDefault" id="flexRadioDefault" class="form-check-input mx-2" (click)="buscar('aprobado','aprobo')">Aprobado</div>
+          <div class="col"><input type="radio" name="flexRadioDefault" id="flexRadioDefault" class="form-check-input mx-2" (click)="buscar('aprobado','reprobo')">Reprobado</div>
+          <div class="col"><input type="radio" name="flexRadioDefault" id="flexRadioDefault" class="form-check-input mx-2" (click)="buscar('sexo','F')">Femenino</div>
+          <div class="col"><input type="radio" name="flexRadioDefault" id="flexRadioDefault" class="form-check-input mx-2" (click)="buscar('sexo','M')">Masculino</div>
+        </div>
+        <article class="blog-post">
+          <table class="table table-dark">
+            <!-- Contenido de la tabla -->
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Aprobado</th>
+                <th>Grupo</th>
+                <th>Carrera</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let al of usuarios_del_grupo">
+                <td>{{ al.nombre }}</td>
+                <td>{{ al.apellido }}</td>
+                <td *ngIf="al.aprobado=='aprobo'">Aprobado</td>
+                <td *ngIf="al.aprobado=='reprobo'">Reprobado</td>
+                <td>{{ al.grupo }}</td>
+                <td>{{ al.carrera }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
     </div>
   </div>
 </div>

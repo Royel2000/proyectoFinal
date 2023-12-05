@@ -1,40 +1,59 @@
 <div *ngIf="currentTutorial" class="edit-form">
-  <h4>Tutorial</h4>
+  <h4>Alumno</h4>
   <form>
     <div class="form-group">
-      <label for="title">Title</label>
-      <input type="text" class="form-control" id="title" [(ngModel)]="currentTutorial.title" name="title" />
+      <label for="title">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombre"
+        [(ngModel)]="currentTutorial.nombre"
+        name="nombre"
+      />
     </div>
     <div class="form-group">
-      <label for="description">Description</label>
-      <input type="text" class="form-control" id="description" [(ngModel)]="currentTutorial.description"
-        name="description" />
+      <label for="apellido">Apellido</label>
+      <input
+        type="text"
+        class="form-control"
+        id="apellido"
+        [(ngModel)]="currentTutorial.apellido"
+        name="apellido"
+      />
     </div>
 
     <div class="form-group">
       <label><strong>Status:</strong></label>
-      {{ currentTutorial.published ? "Published" : "Pending" }}
+      {{ currentTutorial.aprobado ? "Aprobado" : "Pending" }}
     </div>
   </form>
 
-  <button class="badge badge-primary mr-2" *ngIf="currentTutorial.published" (click)="updatePublished(false)">
-    UnPublish
+  <button
+    class="badge badge-primary mr-2"
+    *ngIf="currentTutorial.aprobado"
+    (click)="updatePublished('Pending')"
+  >
+    No Aprobado
   </button>
-  <button *ngIf="!currentTutorial.published" class="badge badge-primary mr-2" (click)="updatePublished(true)">
-    Publish
+  <button
+    *ngIf="!currentTutorial.aprobado"
+    class="badge badge-primary mr-2"
+    (click)="updatePublished('Aprobado')"
+  >
+    Aprobado
   </button>
 
   <button class="badge badge-danger mr-2" (click)="deleteTutorial()">
-    Delete
+    Borrar
   </button>
 
   <button type="submit" class="badge badge-success" (click)="updateTutorial()">
-    Update
+    Actualizar
   </button>
   <p>{{ message }}</p>
 </div>
 
 <div *ngIf="!currentTutorial">
   <br />
-  <p>Cannot access this Tutorial...</p>
+  <p>Cannot access this Alumno...</p>
 </div>

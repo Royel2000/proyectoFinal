@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Tutorial } from 'src/app/models/tutorial.model';
+import { Rol } from 'src/app/shared/services/roles';
 import { TutorialService } from 'src/app/services/tutorial.service';
 
 @Component({
@@ -8,8 +8,7 @@ import { TutorialService } from 'src/app/services/tutorial.service';
   styleUrls: ['./add-tutorial.component.css']
 })
 export class AddTutorialComponent {
-
-  tutorial: Tutorial = new Tutorial();
+  tutorial: Rol = new Rol();
   submitted = false;
 
   constructor(private tutorialService: TutorialService) { }
@@ -23,6 +22,6 @@ export class AddTutorialComponent {
 
   newTutorial(): void {
     this.submitted = false;
-    this.tutorial = new Tutorial();
+    this.tutorial = new Rol();
   }
 }

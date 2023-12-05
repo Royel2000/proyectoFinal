@@ -14,10 +14,12 @@ import { CargaComponent } from './components/carga/carga.component';
 import { UploadListComponent } from './components/upload-list/upload-list.component';
 import { UploadFormComponent } from './components/upload-form/upload-form.component';
 import { UploadDetailsComponent } from './components/upload-details/upload-details.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
-  { path: 'registrar', component: SignUpComponent, canActivate: [RolGuard] },
+  { path: 'registrar2', component: TutorialsListComponent },
+  { path: 'registrar', component: SignUpComponent, canActivate: [RolGuard]},
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'salon', component: SalonComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },

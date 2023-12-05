@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
-import { Rol  } from '../models/rol.model';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Rol } from '../shared/services/roles';
 
 @Injectable({
   providedIn: 'root'
@@ -8,29 +8,26 @@ import { Rol  } from '../models/rol.model';
 export class TutorialService {
   private dbPath = '/usersCollections';
 
-  tutorialsRef: AngularFireList<Rol>;
+  tutorialsRef: AngularFirestoreCollection<Rol>;
 
-  constructor(private db: AngularFireDatabase) {
-    this.tutorialsRef = db.list(this.dbPath);
+  constructor(private db: AngularFirestore) {
+    this.tutorialsRef = db.collection(this.dbPath);
   }
 
-  getAll(): AngularFireList<Rol> {
+  getAll(): AngularFirestoreCollection<Rol> {
     return this.tutorialsRef;
   }
 
   create(tutorial: Rol): any {
-    return this.tutorialsRef.push(tutorial);
+    return this.tutorialsRef.add({ ...tutorial });
   }
 
-  update(key: string, value: any): Promise<void> {
-    return this.tutorialsRef.update(key, value);
+  update(id: string, data: any): Promise<void> {
+    return this.tutorialsRef.doc(id).update(data);
   }
 
-  delete(key: string): Promise<void> {
-    return this.tutorialsRef.remove(key);
-  }
-
-  deleteAll(): Promise<void> {
-    return this.tutorialsRef.remove();
+  delete(id: string): Promise<void> {
+    console.log(id);
+    return this.tutorialsRef.doc(id).delete();
   }
 }
