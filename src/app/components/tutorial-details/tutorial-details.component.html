@@ -1,8 +1,8 @@
 <div *ngIf="currentTutorial" class="edit-form bg-dark-subtle p-3 rounded">
   <h4>Alumno</h4>
-  <form>
+  <form #alumnoForm="ngForm">
     <div class="form-group">
-      <label for="title">Nombre</label>
+      <label for="nombre">Nombre</label>
       <input
         type="text"
         class="form-control"
@@ -22,19 +22,41 @@
       />
     </div>
     <div class="form-group">
-      <label for="grupo">grupo</label>
-      <input
-        type="text"
-        class="form-control"
-        id="grupo"
-        [(ngModel)]="currentTutorial.grupo"
-        name="grupo"
-      />
+      <label for="sexo">Sexo</label>
+      <select class="form-select mb-2" id="sexo" [(ngModel)]="currentTutorial.sexo" name="sexo" required>
+        <option selected value="M">Masculino</option>
+        <option value="F">Femenino</option>
+      </select>
     </div>
 
     <div class="form-group">
+      <label for="grupo">Grupo</label>
+      <select class="form-select mb-2" id="grupo" [(ngModel)]="currentTutorial.grupo" name="grupo" required>
+        <option selected value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="carrera">Carrera</label>
+      <select class="form-select mb-2" id="carrera" [(ngModel)]="currentTutorial.carrera" name="carrera" required>
+        <option selected value="Contabilidad">Contabilidad</option>
+        <option value="Programacion">Programación</option>
+        <option value="A.R.H">A.R.H</option>
+        <option value="Electricidad">Electricidad</option>
+        <option value="Ciencia de datos">Ciencia de datos</option>
+      </select>
+    </div>
+
+
+
+
+
+    <div class="form-group">
       <label><strong>Status:</strong></label>
-      {{ currentTutorial.aprobado ? "aprobo" : "reprobo" }}
+      {{ currentTutorial.aprobado ? "Aprobó" : "Reprobó" }}
     </div>
   </form>
 
@@ -57,7 +79,7 @@
     Borrar
   </button>
 
-  <button type="submit" class="btn btn-success m-1" (click)="updateTutorial()">
+  <button type="submit" class="btn btn-success m-1" (click)="updateTutorial()" [disabled]="!alumnoForm.valid">
     Actualizar
   </button>
   <p>{{ message }}</p>
@@ -65,5 +87,5 @@
 
 <div *ngIf="!currentTutorial">
   <br />
-  <p>Cannot access this Alumno...</p>
+  <p>No se puede acceder a este Alumno...</p>
 </div>
