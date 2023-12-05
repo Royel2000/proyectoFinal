@@ -37,7 +37,7 @@ export class SignUpComponent implements OnInit {
     //console.log(this.data.grupo);
     //this.Rolesquery(this.data.grupo);
     //console.log(this.rolesuser.getRol2('h'));
-    this.rolesuser.getRol2(this.data.grupo).subscribe((data: any) => {
+    this.rolesuser.getRol().subscribe((data: any) => {
       this.usuarios_del_grupo = data;
     });
   }

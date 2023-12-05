@@ -1,4 +1,4 @@
-<div *ngIf="currentTutorial" class="edit-form">
+<div *ngIf="currentTutorial" class="edit-form bg-dark-subtle p-3 rounded">
   <h4>Alumno</h4>
   <form>
     <div class="form-group">
@@ -21,33 +21,43 @@
         name="apellido"
       />
     </div>
+    <div class="form-group">
+      <label for="grupo">grupo</label>
+      <input
+        type="text"
+        class="form-control"
+        id="grupo"
+        [(ngModel)]="currentTutorial.grupo"
+        name="grupo"
+      />
+    </div>
 
     <div class="form-group">
       <label><strong>Status:</strong></label>
-      {{ currentTutorial.aprobado ? "Aprobado" : "Pending" }}
+      {{ currentTutorial.aprobado ? "aprobo" : "reprobo" }}
     </div>
   </form>
 
   <button
-    class="badge badge-primary mr-2"
+    class="btn btn-primary m-1"
     *ngIf="currentTutorial.aprobado"
-    (click)="updatePublished('Pending')"
+    (click)="updatePublished('reprobo')"
   >
     No Aprobado
   </button>
   <button
     *ngIf="!currentTutorial.aprobado"
-    class="badge badge-primary mr-2"
-    (click)="updatePublished('Aprobado')"
+    class="btn btn-primary m-1"
+    (click)="updatePublished('aprobo')"
   >
     Aprobado
   </button>
 
-  <button class="badge badge-danger mr-2" (click)="deleteTutorial()">
+  <button class="btn btn-danger m-1" (click)="deleteTutorial()">
     Borrar
   </button>
 
-  <button type="submit" class="badge badge-success" (click)="updateTutorial()">
+  <button type="submit" class="btn btn-success m-1" (click)="updateTutorial()">
     Actualizar
   </button>
   <p>{{ message }}</p>

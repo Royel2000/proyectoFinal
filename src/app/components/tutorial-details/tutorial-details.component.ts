@@ -36,7 +36,7 @@ export class TutorialDetailsComponent implements OnInit {
 
   updatePublished(status: string): void {
     if (this.currentTutorial.uid) {
-      this.tutorialService.update(this.currentTutorial.uid, { aprobado: 'aprobado' })
+      this.tutorialService.update(this.currentTutorial.uid, { aprobado: 'aprobo' })
       .then(() => {
         this.currentTutorial.aprobado = status;
         this.message = 'Estado de Aprobado, Actualizado Correctamente!';
@@ -48,7 +48,8 @@ export class TutorialDetailsComponent implements OnInit {
   updateTutorial(): void {
     const data = {
       nombre: this.currentTutorial.nombre,
-      apellido: this.currentTutorial.apellido
+      apellido: this.currentTutorial.apellido,
+      grupo: this.currentTutorial.grupo
     };
 
     if (this.currentTutorial.id) {
