@@ -1,0 +1,156 @@
+<div *ngIf="currentTutorial" class="edit-form bg-dark-subtle p-3 rounded">
+  <h4>Alumno</h4>
+  <form #alumnoForm="ngForm">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombre"
+        [(ngModel)]="currentTutorial.nombre"
+        name="nombre"
+      />
+    </div>
+    <div class="form-group">
+      <label for="apellido">Apellido</label>
+      <input
+        type="text"
+        class="form-control"
+        id="apellido"
+        [(ngModel)]="currentTutorial.apellido"
+        name="apellido"
+      />
+    </div>
+    <div class="form-group">
+      <label for="sexo">Sexo</label>
+      <select class="form-select mb-2" id="sexo" [(ngModel)]="currentTutorial.sexo" name="sexo" required>
+        <option selected value="M">Masculino</option>
+        <option value="F">Femenino</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="grupo">Grupo</label>
+      <select class="form-select mb-2" id="grupo" [(ngModel)]="currentTutorial.grupo" name="grupo" required>
+        <option selected value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="carrera">Carrera</label>
+      <select class="form-select mb-2" id="carrera" [(ngModel)]="currentTutorial.carrera" name="carrera" required>
+        <option selected value="Contabilidad">Contabilidad</option>
+        <option value="Programacion">Programación</option>
+        <option value="A.R.H">A.R.H</option>
+        <option value="Electricidad">Electricidad</option>
+        <option value="Ciencia de datos">Ciencia de datos</option>
+      </select>
+    </div>
+    <!-- <p class="text-white">calificacion</p>
+      <p>0 a 100</p>
+      <br />
+      <div class="animate__animated animate__fadeInLeft animate__delay-1s">
+        <div class="text-center">
+          <div class="row align-items-start">
+            <div class="col">
+              <div class="form-group mb-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="calificacion1"
+                  required
+                  [(ngModel)]="calificacion1"
+                  name="calificacion1"
+                  placeholder="calificacion 1"
+                />
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group mb-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="calificacion2"
+                  required
+                  [(ngModel)]="calificacion2"
+                  name="calificacion2"
+                  placeholder="calificacion 2"
+                />
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group mb-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="calificacion3"
+                  required
+                  [(ngModel)]="calificacion3"
+                  name="calificacion3"
+                  placeholder="calificacion 3"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <p>promedio : {{ promedio }}</p>
+        <div class="formGroup">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="aprobado"
+            #aprobado
+            [value]="aprobo(promedio)"
+            disabled
+            required
+          />
+        </div>
+
+
+        <button (click)="calcularPromedio()" class="btn btn-warning mb-2">
+          Calcular Promedio
+        </button>
+      </div> -->
+
+
+
+
+
+    <div class="form-group">
+      <label><strong>Status:</strong></label>
+      {{ currentTutorial.aprobado ? "Aprobó" : "Reprobó" }}
+    </div>
+  </form>
+
+  <button
+    class="btn btn-primary m-1"
+    *ngIf="currentTutorial.aprobado"
+    (click)="updatePublished('reprobo')"
+  >
+    No Aprobado
+  </button>
+  <button
+    *ngIf="!currentTutorial.aprobado"
+    class="btn btn-primary m-1"
+    (click)="updatePublished('aprobo')"
+  >
+    Aprobado
+  </button>
+
+  <button class="btn btn-danger m-1" (click)="deleteTutorial()">
+    Borrar
+  </button>
+
+  <button type="submit" class="btn btn-success m-1" (click)="updateTutorial()" [disabled]="!alumnoForm.valid">
+    Actualizar
+  </button>
+  <p>{{ message }}</p>
+</div>
+
+<div *ngIf="!currentTutorial">
+  <br />
+  <p>No se puede acceder a este Alumno...</p>
+</div>

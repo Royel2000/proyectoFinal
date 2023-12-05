@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "instituto": {
+    "angular-16-firebase-crud": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/instituto",
+            "outputPath": "dist/angular-16-firebase-crud",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "instituto:build:production"
+              "browserTarget": "angular-16-firebase-crud:build:production"
             },
             "development": {
-              "browserTarget": "instituto:build:development"
+              "browserTarget": "angular-16-firebase-crud:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "instituto:build"
+            "browserTarget": "angular-16-firebase-crud:build"
           }
         },
         "test": {
@@ -96,6 +96,6 @@
     }
   },
   "cli": {
-    "analytics": "646e1daf-8c95-45d9-b834-1ff5c1b465
+    "analytics": "cfd93469-1660-48c5-9ee7-25a43de65475"
   }
 }
