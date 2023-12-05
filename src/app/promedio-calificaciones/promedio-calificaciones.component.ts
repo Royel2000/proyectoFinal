@@ -1,9 +1,10 @@
+// promedio-calificaciones.component.ts
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-promedio-calificaciones',
   templateUrl: './promedio-calificaciones.component.html',
-  styleUrls: ['./promedio-calificaciones.component.css']
+  styleUrls: ['./promedio-calificaciones.component.css'],
 })
 export class PromedioCalificacionesComponent {
   calificacion1: number | null = null;
