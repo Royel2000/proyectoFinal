@@ -49,6 +49,71 @@
         <option value="Ciencia de datos">Ciencia de datos</option>
       </select>
     </div>
+    <p class="text-white">calificacion</p>
+      <p>0 a 100</p>
+      <br />
+      <div class="animate__animated animate__fadeInLeft animate__delay-1s">
+        <div class="text-center">
+          <div class="row align-items-start">
+            <div class="col">
+              <div class="form-group mb-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="calificacion1"
+                  required
+                  [(ngModel)]="calificacion1"
+                  name="calificacion1"
+                  placeholder="calificacion 1"
+                />
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group mb-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="calificacion2"
+                  required
+                  [(ngModel)]="calificacion2"
+                  name="calificacion2"
+                  placeholder="calificacion 2"
+                />
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group mb-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="calificacion3"
+                  required
+                  [(ngModel)]="calificacion3"
+                  name="calificacion3"
+                  placeholder="calificacion 3"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <p>promedio : {{ promedio }}</p>
+        <!-- <div class="formGroup">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="aprobado"
+            #aprobado
+            [value]="aprobo(promedio)"
+            disabled
+            required
+          />//Esta parte me manda error
+        </div> -->
+        <!-- promedio | number : '1.2-2' -->
+
+        <button (click)="calcularPromedio()" class="btn btn-warning mb-2">
+          Calcular Promedio
+        </button>
+      </div>
 
 
 
